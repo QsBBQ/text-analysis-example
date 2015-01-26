@@ -1,14 +1,11 @@
 def item_counts(array)
-  counts = {} # Initialize counts to an empty Hash
+  counts = Hash.new(0)
 
   array.each do |item|
-    # Add code here to modify the "counts" hash accordingly
-    # You'll need to handle two cases:
-    #   1. The first time we've seen a particular item in the array
-    #   2. The second-or-later time we've seen a particular item in the array
+    counts[item] += 1
   end
 
-  counts # This returns the "counts" hash
+  counts
 end
 
 p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
