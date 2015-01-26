@@ -8,6 +8,10 @@ def item_counts(array)
   counts
 end
 
+def chars_in(string)
+  string.chars
+end
+
 def format_counts(counts)
   counts.map do |item, count|
     "#{item} - #{count}"
@@ -21,6 +25,10 @@ if ARGV[0] == "test"
   p item_counts(["hi", "hi", "hi"]) == {"hi" => 3}
   p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
   p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
+
+  p chars_in("a") == ["a"]
+  p chars_in("abc") == ["a", "b", "c"]
+  p chars_in("Dr. 123\n") == ["D", "r", ".", " ", "1", "2", "3", "\n"]
 
   sample_items = ["a", "a", "a", "b", "b", "c"]
 
