@@ -30,8 +30,11 @@ if ARGV[0] == "test"
   p chars_in("abc") == ["a", "b", "c"]
   p chars_in("Dr. 123\n") == ["D", "r", ".", " ", "1", "2", "3", "\n"]
 
-  sample_items = ["a", "a", "a", "b", "b", "c"]
+  sample_string = "Elementary, my dear Watson"
+  characters    = chars_in(sample_string)
+  char_counts   = item_counts(characters)
 
-  puts "The counts for #{sample_items} are..."
-  puts format_counts( item_counts(sample_items) )
+  puts "The counts for #{sample_string} are..."
+
+  puts format_counts( char_counts )
 end
