@@ -57,6 +57,20 @@ def to_percent(freq)
   freq_percent.to_s.rjust(5) + '%'
 end
 
+def screen_width
+  if system 'which tput 1>/dev/null'
+    # If tput is available, use it
+    `tput cols`.to_i
+  else
+    # Otherwise, just return a default width of 80 chars
+    80
+  end
+end
+
+def histogram_bar(percent, width, offset)
+  '#' * (percent * (width - offset))
+end
+
 def format_counts(counts)
   sorted(counts).map do |item, count|
     "#{item.inspect} - #{count}"
@@ -64,13 +78,13 @@ def format_counts(counts)
 end
 
 def format_frequencies(frequencies)
-  width = 80
-  max   = frequencies.values.max
+  max = frequencies.values.max
 
   sorted(frequencies).map do |item, freq|
-    bar_length   = (freq / max) * width
+    item_info         = "#{item} [#{to_percent(freq)}] "
+    percent_of_screen = freq / max
 
-    "#{item} [#{to_percent(freq)}] " + ("#" * bar_length)
+    item_info + histogram_bar(percent_of_screen, screen_width, item_info.length)
   end.join("\n")
 end
 
