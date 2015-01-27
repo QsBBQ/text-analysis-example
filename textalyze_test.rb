@@ -20,8 +20,8 @@ p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
 
 puts ""
 puts "Running tests for format_counts()..."
-p format_counts({"a" => 2, "A" => 2}) == "\"a\" - 2\n\"A\" - 2"
-p format_counts({true => 1, nil => 1, "dinosaur" => 1}) == "true - 1\nnil - 1\n\"dinosaur\" - 1"
+p format_counts({"a" => 2, "A" => 2}) == "\"A\" - 2\n\"a\" - 2"
+p format_counts({true => 1, nil => 1, "dinosaur" => 1}) == "nil - 1\n\"dinosaur\" - 1\ntrue - 1"
 p format_counts({" " => 3}) == "\" \" - 3"
 
 puts ""

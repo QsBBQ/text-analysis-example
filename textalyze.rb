@@ -48,14 +48,18 @@ def sanitize(string)
   string.downcase.gsub(/[^a-z0-9\s]/, '')
 end
 
+def sorted(stats)
+  stats.sort_by { |item, stat| item.to_s }
+end
+
 def format_counts(counts)
-  counts.map do |item, count|
+  sorted(counts).map do |item, count|
     "#{item.inspect} - #{count}"
   end.join("\n")
 end
 
 def format_frequencies(frequencies)
-  frequencies.map do |item, freq|
+  sorted(frequencies).map do |item, freq|
     freq_percent = (freq * 100).round(2)
 
     "#{item.inspect} - #{freq_percent}%"
