@@ -50,7 +50,7 @@ if ARGV[0] == "test"
   p sanitize("WHY AM I YELLING?") == "why am i yelling"
   p sanitize("HEY: ThIs Is hArD tO rEaD!") == "hey this is hard to read"
 
-  sample_string = "Elementary, my dear Watson"
-  puts "The counts for #{sample_string} are..."
-  puts textalyze(sample_string)
+  sample_file = "./sample_data/great-gatsby.txt"
+  puts "The counts for #{sample_file} are..."
+  puts textalyze( File.read(sample_file) )
 end
