@@ -52,6 +52,11 @@ def sorted(stats)
   stats.sort_by { |item, stat| item.to_s }
 end
 
+def to_percent(freq)
+  freq_percent = (freq * 100).round(2)
+  freq_percent.to_s.rjust(5) + '%'
+end
+
 def format_counts(counts)
   sorted(counts).map do |item, count|
     "#{item.inspect} - #{count}"
@@ -64,9 +69,8 @@ def format_frequencies(frequencies)
 
   sorted(frequencies).map do |item, freq|
     bar_length   = (freq / max) * 80
-    freq_percent = (freq * 100).round(2)
 
-    "#{item} [#{freq_percent}%] " + ("#" * bar_length)
+    "#{item} [#{to_percent(freq)}] " + ("#" * bar_length)
   end.join("\n")
 end
 
