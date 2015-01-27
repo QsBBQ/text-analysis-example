@@ -4,11 +4,11 @@ def textalyze(text, options = {})
   characters = chars_in( sanitize(text) )
 
   if format == :count
-    # Return the raw count for each item
+    # Return the raw count for each character
     counts = item_counts(characters)
     format_counts(counts)
   elsif format == :frequency
-    # Return the frequency percentage for each item
+    # Return the frequency percentage for each character
     freq_counts = frequencies(characters)
     format_frequencies(freq_counts)
   else
