@@ -45,7 +45,7 @@ def chars_in(string)
 end
 
 def sanitize(string)
-  string.downcase.gsub(/[^a-z0-9\s]/, '')
+  string.downcase.gsub(/[^a-z0-9]/, '')
 end
 
 def sorted(stats)
