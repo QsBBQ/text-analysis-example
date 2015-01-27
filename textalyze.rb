@@ -59,10 +59,14 @@ def format_counts(counts)
 end
 
 def format_frequencies(frequencies)
+  width = 80
+  max   = frequencies.values.max
+
   sorted(frequencies).map do |item, freq|
+    bar_length   = (freq / max) * 80
     freq_percent = (freq * 100).round(2)
 
-    "#{item.inspect} - #{freq_percent}%"
+    "#{item} [#{freq_percent}%] " + ("#" * bar_length)
   end.join("\n")
 end
 
