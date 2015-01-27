@@ -9,14 +9,14 @@ def textalyze(text, options = {})
     format_counts(counts)
   elsif options[:format] == :frequency
     # Return the frequency percentage for each item
-    freq_counts = frequency_counts(characters)
+    freq_counts = frequencies(characters)
     format_frequencies(freq_counts)
   else
     raise "Format #{options[:format]} not recognized."
   end
 end
 
-def frequency_counts(array)
+def frequencies(array)
   total_count = array.count
 
   counts = item_counts(array)
