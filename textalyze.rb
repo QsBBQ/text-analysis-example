@@ -20,7 +20,7 @@ def chars_in(string)
 end
 
 def sanitize(string)
-  string.downcase
+  string.downcase.gsub(/[^a-z0-9\s]/, '')
 end
 
 def format_counts(counts)
@@ -45,7 +45,10 @@ if ARGV[0] == "test"
   p chars_in("Dr. 123\n") == ["D", "r", ".", " ", "1", "2", "3", "\n"]
 
   p sanitize("AaBbCc") == "aabbcc"
-  p sanitize("A- lOT. of cRaZy") == "a- lot. of crazy"
+  p sanitize("A- lOT. of cRaZy") == "a lot of crazy"
+  p sanitize("This is a sentence.") == "this is a sentence"
+  p sanitize("WHY AM I YELLING?") == "why am i yelling"
+  p sanitize("HEY: ThIs Is hArD tO rEaD!") == "hey this is hard to read"
 
   sample_string = "Elementary, my dear Watson"
   puts "The counts for #{sample_string} are..."
