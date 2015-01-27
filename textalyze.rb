@@ -49,8 +49,8 @@ if ARGV[0] == "test"
   p sanitize("This is a sentence.") == "this is a sentence"
   p sanitize("WHY AM I YELLING?") == "why am i yelling"
   p sanitize("HEY: ThIs Is hArD tO rEaD!") == "hey this is hard to read"
-
-  sample_file = "./sample_data/great-gatsby.txt"
-  puts "The counts for #{sample_file} are..."
-  puts textalyze( File.read(sample_file) )
+else
+  source_file = ARGV.first
+  puts "The counts for #{source_file} are..."
+  puts textalyze( File.read(source_file) )
 end
