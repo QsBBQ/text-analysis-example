@@ -3,16 +3,16 @@ def textalyze(text, options = {})
 
   characters = chars_in( sanitize(text) )
 
-  if options[:format] == :count
+  if format == :count
     # Return the raw count for each item
     counts = item_counts(characters)
     format_counts(counts)
-  elsif options[:format] == :frequency
+  elsif format == :frequency
     # Return the frequency percentage for each item
     freq_counts = frequencies(characters)
     format_frequencies(freq_counts)
   else
-    raise "Format #{options[:format]} not recognized."
+    raise "Format #{format} not recognized."
   end
 end
 
