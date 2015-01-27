@@ -1,8 +1,19 @@
-def textalyze(text)
-  characters  = chars_in( sanitize(text) )
-  char_counts = item_counts(characters)
+def textalyze(text, options = {})
+  format = options.fetch(:format) { :frequency }
 
-  format_counts(char_counts)
+  characters = chars_in( sanitize(text) )
+
+  if options[:format] == :count
+    # Return the raw count for each item
+    counts = item_counts(characters)
+    format_counts(counts)
+  elsif options[:format] == :frequency
+    # Return the frequency percentage for each item
+    freq_counts = frequency_counts(characters)
+    format_frequencies(freq_counts)
+  else
+    raise "Format #{options[:format]} not recognized."
+  end
 end
 
 def frequency_counts(array)
@@ -11,7 +22,7 @@ def frequency_counts(array)
   counts = item_counts(array)
 
   frequencies = counts.map do |item, count|
-    frequency = (count / total_count.to_f).round(2)
+    frequency = (count / total_count.to_f).round(4)
 
     [item, frequency]
   end
@@ -43,6 +54,14 @@ def format_counts(counts)
   end.join("\n")
 end
 
+def format_frequencies(frequencies)
+  frequencies.map do |item, freq|
+    freq_percent = (freq * 100).round(2)
+
+    "#{item.inspect} - #{freq_percent}%"
+  end.join("\n")
+end
+
 if __FILE__ == $PROGRAM_NAME
   if ARGV.empty?
     puts "Please supply a text file to analyze."
@@ -55,5 +74,5 @@ if __FILE__ == $PROGRAM_NAME
   source_file = ARGV.first
 
   puts "The counts for #{source_file} are..."
-  puts textalyze( File.read(source_file) )
+  puts textalyze( File.read(source_file), format: :frequency )
 end
