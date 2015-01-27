@@ -1,6 +1,15 @@
 require_relative './textalyze.rb'
 
 puts ""
+puts "Running tests for frequency_counts()..."
+p frequency_counts([1,2,1,2,1]) == {1 => 0.6, 2 => 0.4}
+p frequency_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 0.5, "b" => 0.33, "ZZZ" => 0.17}
+p frequency_counts([]) == {}
+p frequency_counts(["hi", "hi", "hi"]) == {"hi" => 1.0}
+p frequency_counts([true, nil, "dinosaur"]) == {true => 0.33, nil => 0.33, "dinosaur" => 0.33}
+p frequency_counts(["a","a","A","A"]) == {"a" => 0.5, "A" => 0.5}
+
+puts ""
 puts "Running tests for item_counts()..."
 p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
 p item_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 3, "b" => 2, "ZZZ" => 1}

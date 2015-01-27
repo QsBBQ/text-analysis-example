@@ -5,6 +5,20 @@ def textalyze(text)
   format_counts(char_counts)
 end
 
+def frequency_counts(array)
+  total_count = array.count
+
+  counts = item_counts(array)
+
+  frequencies = counts.map do |item, count|
+    frequency = (count / total_count.to_f).round(2)
+
+    [item, frequency]
+  end
+
+  frequencies.to_h
+end
+
 def item_counts(array)
   counts = Hash.new(0)
 
