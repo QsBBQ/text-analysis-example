@@ -30,6 +30,9 @@ if ARGV[0] == "test"
   p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
   p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
 
+  p format_counts({"a" => 2, "A" => 2}) == "a - 2\nA - 2"
+  p format_counts({true => 1, nil => 1, "dinosaur" => 1}) == "true - 1\n - 1\ndinosaur - 1"
+
   p chars_in("a") == ["a"]
   p chars_in("abc") == ["a", "b", "c"]
   p chars_in("Dr. 123\n") == ["D", "r", ".", " ", "1", "2", "3", "\n"]
