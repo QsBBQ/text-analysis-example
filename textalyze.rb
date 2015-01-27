@@ -30,6 +30,14 @@ def format_counts(counts)
 end
 
 if __FILE__ == $PROGRAM_NAME
+  if ARGV.empty?
+    puts "Please supply a text file to analyze."
+    puts ""
+    puts "Example:"
+    puts "$ ruby #{__FILE__} ./sample_data/moby-dick.txt"
+    exit 1
+  end
+
   source_file = ARGV.first
 
   puts "The counts for #{source_file} are..."
