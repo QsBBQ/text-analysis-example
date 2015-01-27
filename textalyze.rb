@@ -12,6 +12,10 @@ def chars_in(string)
   string.chars
 end
 
+def sanitize(string)
+  string.downcase
+end
+
 def format_counts(counts)
   counts.map do |item, count|
     "#{item} - #{count}"
@@ -30,8 +34,11 @@ if ARGV[0] == "test"
   p chars_in("abc") == ["a", "b", "c"]
   p chars_in("Dr. 123\n") == ["D", "r", ".", " ", "1", "2", "3", "\n"]
 
+  p sanitize("AaBbCc") == "aabbcc"
+  p sanitize("A- lOT. of cRaZy") == "a- lot. of crazy"
+
   sample_string = "Elementary, my dear Watson"
-  characters    = chars_in(sample_string)
+  characters    = chars_in( sanitize(sample_string) )
   char_counts   = item_counts(characters)
 
   puts "The counts for #{sample_string} are..."
