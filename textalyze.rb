@@ -1,3 +1,10 @@
+def textalyze(text)
+  characters  = chars_in( sanitize(text) )
+  char_counts = item_counts(characters)
+
+  format_counts(char_counts)
+end
+
 def item_counts(array)
   counts = Hash.new(0)
 
@@ -41,10 +48,6 @@ if ARGV[0] == "test"
   p sanitize("A- lOT. of cRaZy") == "a- lot. of crazy"
 
   sample_string = "Elementary, my dear Watson"
-  characters    = chars_in( sanitize(sample_string) )
-  char_counts   = item_counts(characters)
-
   puts "The counts for #{sample_string} are..."
-
-  puts format_counts( char_counts )
+  puts textalyze(sample_string)
 end
