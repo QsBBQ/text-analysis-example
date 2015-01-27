@@ -25,7 +25,7 @@ end
 
 def format_counts(counts)
   counts.map do |item, count|
-    "#{item} - #{count}"
+    "#{item.inspect} - #{count}"
   end.join("\n")
 end
 
