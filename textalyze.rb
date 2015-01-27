@@ -68,7 +68,7 @@ def format_frequencies(frequencies)
   max   = frequencies.values.max
 
   sorted(frequencies).map do |item, freq|
-    bar_length   = (freq / max) * 80
+    bar_length   = (freq / max) * width
 
     "#{item} [#{to_percent(freq)}] " + ("#" * bar_length)
   end.join("\n")
