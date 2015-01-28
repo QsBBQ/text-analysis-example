@@ -100,5 +100,5 @@ if __FILE__ == $PROGRAM_NAME
   source_file = ARGV.first
 
   puts "The counts for #{source_file} are..."
-  puts textalyze( File.read(source_file), format: :frequency )
+  puts textalyze( File.read(source_file), :format => :frequency )
 end
