@@ -1,7 +1,7 @@
 def textalyze(text, options = {})
   format = options.fetch(:format) { :frequency }
 
-  characters = chars_in( sanitize(text) )
+  characters = chars_in(sanitize(text))
 
   if format == :count
     # Return the raw count for each character
@@ -12,7 +12,7 @@ def textalyze(text, options = {})
     freq_counts = frequencies(characters)
     format_frequencies(freq_counts)
   else
-    raise "Format #{format} not recognized."
+    fail "Format #{format} not recognized."
   end
 end
 
@@ -45,20 +45,20 @@ def chars_in(string)
 end
 
 def sanitize(string)
-  string.downcase.gsub(/[^a-z0-9]/, '')
+  string.downcase.gsub(/[^a-z0-9]/, "")
 end
 
 def sorted(stats)
-  stats.sort_by { |item, stat| item.to_s }
+  stats.sort_by { |item, _stat| item.to_s }
 end
 
 def to_percent(freq)
   freq_percent = (freq * 100).round(2)
-  freq_percent.to_s.rjust(5) + '%'
+  freq_percent.to_s.rjust(5) + "%"
 end
 
 def screen_width
-  if system 'which tput 1>/dev/null'
+  if system "which tput 1>/dev/null"
     # If tput is available, use it
     `tput cols`.to_i
   else
@@ -68,7 +68,7 @@ def screen_width
 end
 
 def histogram_bar(percent, width, offset)
-  '#' * (percent * (width - offset))
+  "#" * (percent * (width - offset))
 end
 
 def format_counts(counts)
@@ -100,5 +100,5 @@ if __FILE__ == $PROGRAM_NAME
   source_file = ARGV.first
 
   puts "The counts for #{source_file} are..."
-  puts textalyze( File.read(source_file), :format => :frequency )
+  puts textalyze(File.read(source_file), :format => :frequency)
 end
