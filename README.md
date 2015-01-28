@@ -5,7 +5,8 @@ An example implementation of the [text-analysis][text-analysis] project.
 ## Files In This Repository
 
 1. `textalyze.rb` is the source code for this project
-2. `sample_data` is a directory containing sample text files to analyze, mostly from [Project Gutenberg](http://www.gutenberg.org/).
+1. `textalyze_test.rb` contains tests for the code in `textalyze.rb`
+1. `sample_data` is a directory containing sample text files to analyze, mostly from [Project Gutenberg](http://www.gutenberg.org/).
 
 [text-analysis]:https://github.com/codeunion/text-analysis
 
