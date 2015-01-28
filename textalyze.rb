@@ -1,66 +1,56 @@
-# This is the base code for v0.1 of our Ruby text analyzer.
-# Visit https://github.com/codeunion/text-analysis/wiki to see what to do.
-#
-# Send an email to your cohort mailing list if you have any questions
-# or you're stuck!  These comments are here to help you, but please delete them
-# as you go along. You wouldn't normally have such heavily-commented code.
+def textalyze(text)
+  characters  = chars_in( sanitize(text) )
+  char_counts = item_counts(characters)
 
-# Method name: item_counts
-# Input:   An arbitrary array
-#
-# Returns: A hash where every item is a key whose value is the number of times
-#          that item appears in the array
-#
-# Prints:  Nothing
-
-# Here are some examples:
-#     item_counts(["I", "am", "Sam", "I", "am"])
-#       # => {"I" => 2, "am" => 2, "Sam" => 1}
-#
-#     item_counts([10, 20, 10, 20, 20])
-#       # => {10 => 2, 20 => 3}
-#
-# In short, item_counts(array) tells us how many times each item appears
-# in the input array.
-
-def item_counts(array)
-  counts = {} # Initialize counts to an empty Hash
-
-  array.each do |item|
-    # Add code here to modify the "counts" hash accordingly
-    # You'll need to handle two cases:
-    #   1. The first time we've seen a particular item in the array
-    #   2. The second-or-later time we've seen a particular item in the array
-  end
-
-  counts # This returns the "counts" hash
+  format_counts(char_counts)
 end
 
-# "p" prints something to the screen in a way that's friendlier
-# for debugging purposes than print or puts.
+def item_counts(array)
+  counts = Hash.new(0)
 
-p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
-p item_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 3, "b" => 2, "ZZZ" => 1}
-p item_counts([]) == {}
-p item_counts(["hi", "hi", "hi"]) == {"hi" => 3}
-p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
-p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
+  array.each do |item|
+    counts[item] += 1
+  end
 
-# Each of the lines above will print out "true" or "false" and collectively
-# act as a sanity check.  Remember that conceptually "x == y"
-# means "are x and y equal?"
-#
-# That is, when you run the code, if any lines print out "false"
-# then you know something is off in your code.
-#
-# This does *not* mean that your code is perfect if each line
-# prints out "true.""  For example,
-#   1. We might have missed a corner case
-#   2. The code does what it should, but is conceptually confused
-#   3. Something else we haven't though of
-#
-# Remember: Option #3 is *always* possible.
-#
-# Think of these like rumble strips on the side of the road.  They're here
-# to tell you when you're veering off the road, not to guarantee you're
-# driving phenomenally. :)
+  counts
+end
+
+def chars_in(string)
+  string.chars
+end
+
+def sanitize(string)
+  string.downcase.gsub(/[^a-z0-9\s]/, '')
+end
+
+def format_counts(counts)
+  counts.map do |item, count|
+    "#{item} - #{count}"
+  end.join("\n")
+end
+
+if ARGV[0] == "test"
+  p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
+  p item_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 3, "b" => 2, "ZZZ" => 1}
+  p item_counts([]) == {}
+  p item_counts(["hi", "hi", "hi"]) == {"hi" => 3}
+  p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
+  p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
+
+  p format_counts({"a" => 2, "A" => 2}) == "a - 2\nA - 2"
+  p format_counts({true => 1, nil => 1, "dinosaur" => 1}) == "true - 1\n - 1\ndinosaur - 1"
+
+  p chars_in("a") == ["a"]
+  p chars_in("abc") == ["a", "b", "c"]
+  p chars_in("Dr. 123\n") == ["D", "r", ".", " ", "1", "2", "3", "\n"]
+
+  p sanitize("AaBbCc") == "aabbcc"
+  p sanitize("A- lOT. of cRaZy") == "a lot of crazy"
+  p sanitize("This is a sentence.") == "this is a sentence"
+  p sanitize("WHY AM I YELLING?") == "why am i yelling"
+  p sanitize("HEY: ThIs Is hArD tO rEaD!") == "hey this is hard to read"
+
+  sample_string = "Elementary, my dear Watson"
+  puts "The counts for #{sample_string} are..."
+  puts textalyze(sample_string)
+end

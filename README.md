@@ -8,3 +8,11 @@ An example implementation of the [text-analysis][text-analysis] project.
 2. `sample_data` is a directory containing sample text files to analyze, mostly from [Project Gutenberg](http://www.gutenberg.org/).
 
 [text-analysis]:https://github.com/codeunion/text-analysis
+
+## Usage
+
+Run the tests with the command-line argument `test`.
+
+```shell-session
+$ ruby textalyze.rb test
+```
