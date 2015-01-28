@@ -12,7 +12,7 @@ def textalyze(text, options = {})
     freq_counts = frequencies(characters)
     format_frequencies(freq_counts)
   else
-    raise "Format #{format} not recognized."
+    fail "Format #{format} not recognized."
   end
 end
 
