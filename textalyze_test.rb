@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/LineLength
 require_relative "./textalyze.rb"
 
 puts ""
