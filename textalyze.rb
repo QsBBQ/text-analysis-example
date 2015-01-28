@@ -49,7 +49,7 @@ def sanitize(string)
 end
 
 def sorted(stats)
-  stats.sort_by { |item, stat| item.to_s }
+  stats.sort_by { |item, _stat| item.to_s }
 end
 
 def to_percent(freq)
