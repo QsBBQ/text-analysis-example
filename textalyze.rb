@@ -1,7 +1,7 @@
 def textalyze(text, options = {})
   format = options.fetch(:format) { :frequency }
 
-  characters = chars_in( sanitize(text) )
+  characters = chars_in(sanitize(text))
 
   if format == :count
     # Return the raw count for each character
@@ -100,5 +100,5 @@ if __FILE__ == $PROGRAM_NAME
   source_file = ARGV.first
 
   puts "The counts for #{source_file} are..."
-  puts textalyze( File.read(source_file), :format => :frequency )
+  puts textalyze(File.read(source_file), :format => :frequency)
 end
