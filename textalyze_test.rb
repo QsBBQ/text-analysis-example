@@ -1,4 +1,4 @@
-require_relative './textalyze.rb'
+require_relative "./textalyze.rb"
 
 puts ""
 puts "Running tests for frequencies()..."

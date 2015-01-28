@@ -45,7 +45,7 @@ def chars_in(string)
 end
 
 def sanitize(string)
-  string.downcase.gsub(/[^a-z0-9]/, '')
+  string.downcase.gsub(/[^a-z0-9]/, "")
 end
 
 def sorted(stats)
@@ -54,11 +54,11 @@ end
 
 def to_percent(freq)
   freq_percent = (freq * 100).round(2)
-  freq_percent.to_s.rjust(5) + '%'
+  freq_percent.to_s.rjust(5) + "%"
 end
 
 def screen_width
-  if system 'which tput 1>/dev/null'
+  if system "which tput 1>/dev/null"
     # If tput is available, use it
     `tput cols`.to_i
   else
@@ -68,7 +68,7 @@ def screen_width
 end
 
 def histogram_bar(percent, width, offset)
-  '#' * (percent * (width - offset))
+  "#" * (percent * (width - offset))
 end
 
 def format_counts(counts)
