@@ -1,0 +1,12 @@
+{
+  "category": "example",
+  "tags": [
+    "ruby",
+    "sinatra",
+    "text-analysis",
+    "control-flow",
+    "cli-app",
+    "data-transformation"
+  ],
+  "notes": ""
+}
